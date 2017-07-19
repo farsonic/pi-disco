@@ -1,0 +1,59 @@
+{% extends "base_layout.html" %} {% block title %}Device table{% endblock %} 
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('serveStaticResource', resource='css/responsive.dataTables.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('serveStaticResource', resource='css/dataTables.bootstrap.css') }}">
+{% endblock %} 
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Network Devices
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="dataTable_wrapper">
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Severity</th>
+                                <th>Result</th>
+                                <th>Message</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+        		     {% for key, value in log_dict.items(): %}
+                                <td>{{ value['date'] }} </td>
+                                <td>{{ value['time'] }} </td>
+                                <td>{{ value['severity'] }} </td>
+                                <td>{{ value['result'] }} </td>
+                                <td>{{ value['message'] }} </td>	 
+        		    </tr>
+                             {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.table-responsive -->
+<!-- /.row -->
+{% endblock %} 
+{% block js %}
+{{ super() }}
+<script src="{{ url_for('serveStaticResource', resource='js/jquery.dataTables.min.js')}}"></script>
+<script src="{{ url_for('serveStaticResource', resource='js/dataTables.bootstrap.min.js')}}"></script>
+<script>
+$(document).ready(function() {
+    $('#dataTables-example').DataTable({
+        responsive: true
+    });
+});
+</script>
+{% endblock %}

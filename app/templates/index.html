@@ -1,0 +1,267 @@
+{% extends "base_layout.html" %} {% block title %}{% endblock %} 
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('serveStaticResource', resource='css/timeline.css') }}">
+    <link rel="stylesheet" href="{{ url_for('serveStaticResource', resource='css/morris.css') }}">
+{% endblock %} 
+{% block content %}
+
+
+<script>
+window.onload = function () {
+
+var chart1 = new CanvasJS.Chart("chartOUI", {
+                animationEnabled: true,
+                legend:{
+                        verticalAlign: "center",
+                        horizontalAlign: "left",
+                        fontSize: 10,
+                        fontFamily: "Helvetica"
+                },
+                theme: "theme2",
+                data: [
+                {
+                        type: "pie",
+                        indexLabelFontFamily: "Garamond",
+                        indexLabelFontSize: 10,
+                        indexLabel: "{label} ({y})",
+                        startAngle:-20,
+                        showInLegend: true,
+                        toolTipContent:"{legendText} ({y})",
+                        dataPoints: [
+                        {% for oui, value in OUI_counter.items(): %}
+  						    {  y: {{value}}, legendText:"{{oui}}", label: "{{oui}}"},
+						{% endfor %}
+                        ]
+                }
+                ]
+        });
+        chart1.render();
+        chart1 = {};
+
+var chart2 = new CanvasJS.Chart("chartCat", {
+                animationEnabled: true,
+                legend:{
+                        verticalAlign: "center",
+                        horizontalAlign: "left",
+                        fontSize: 10,
+                        fontFamily: "Helvetica"
+                },
+                theme: "theme2",
+                data: [
+                {
+                        type: "pie",
+                        indexLabelFontFamily: "Garamond",
+                        indexLabelFontSize: 10,
+                        indexLabel: "{label} ({y})",
+                        startAngle:-20,
+                        showInLegend: true,
+                        toolTipContent:"{legendText} ({y})",
+                        dataPoints: [
+                        {% for category, value in Category_counter.items(): %}
+  						    {  y: {{value}}, legendText:"{{category}}", label: "{{category}}"},
+						{% endfor %}
+                        ]
+                }
+                ]
+        });
+        chart2.render();
+        chart2 = {};
+
+var chart3 = new CanvasJS.Chart("chartDHCP", {
+                animationEnabled: true,
+                legend:{
+                        verticalAlign: "center",
+                        horizontalAlign: "left",
+                        fontSize: 10,
+                        fontFamily: "Helvetica"
+                },
+                theme: "theme2",
+                data: [
+                {
+                        type: "pie",
+                        indexLabelFontFamily: "Garamond",
+                        indexLabelFontSize: 10,
+                        indexLabel: "{label} ({y})",
+                        startAngle:-20,
+                        showInLegend: true,
+                        toolTipContent:"{legendText} ({y})",
+                        dataPoints: [
+                        {% for vendor, value in DHCP_counter.items(): %}
+  						    {  y: {{value}}, legendText:"{{vendor}}", label: "{{vendor}}"},
+						{% endfor %}
+                        ]
+                }
+                ]
+        });
+        chart3.render();
+        chart3 = {};
+
+
+
+var chart4 = new CanvasJS.Chart("chartnewOS", {
+                animationEnabled: true,
+                legend:{
+                        verticalAlign: "center",
+                        horizontalAlign: "left",
+                        fontSize: 10,
+                        fontFamily: "Helvetica"
+                },
+                theme: "theme2",
+                data: [
+                {
+                        type: "pie",
+                        indexLabelFontFamily: "Garamond",
+                        indexLabelFontSize: 10,
+                        indexLabel: "{label} ({y})",
+                        startAngle:-20,
+                        showInLegend: true,
+                        toolTipContent:"{legendText}({y})",
+                        dataPoints: [
+                        {% for os, value in OS_counter.items(): %}
+  						    {  y: {{value}}, legendText:"{{os}}", label: "{{os}}"},
+						{% endfor %}
+                        ]
+                }
+                ]
+        });
+        chart4.render();
+        chart4 = {};
+
+
+     
+
+}
+</script>
+
+
+<div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header"> </h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-laptop fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">{{Category_length}}</div>
+                        <div>Device Categories</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-green">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-tasks fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">{{ DHCP_length }}</div>
+                        <div>DHCP Vendors</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-yellow">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-keyboard-o fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">{{OS_length}}</div>
+                        <div>Operating Systems</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-map-marker fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">{{OUI_length}}</div>
+                        <div>Unique Vendor OUI's</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+            <div class="panel-heading">
+                <i class="fa fa-laptop fa-fw"></i> {{Category_length}} Device Categories
+            </div>
+            <div class="panel-body">
+                <div id="chartCat" style="height: 300px; width: 100%;"></div>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+
+
+<div class="panel panel-green">
+            <div class="panel-heading">
+                <i class="fa fa-tasks fa-fw"></i> {{DHCP_length}} DHCP Vendors discovered
+            </div>
+            <div class="panel-body">
+                <div id="chartDHCP" style="height: 300px; width: 100%;"></div>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+        
+<div class="panel panel-yellow">
+            <div class="panel-heading">
+                <i class="fa fa-keyboard-o fa-fw"></i> {{OS_length}} Unique Operating Systems
+            </div>
+            <div class="panel-body">
+                <div id="chartnewOS" style="height: 300px; width: 100%;"></div>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+        
+<div class="panel panel-info">
+            <div class="panel-heading">
+                <i class="fa fa-map-marker fa-fw"></i> OUI Vendor breakdown - {{count}} Total devices
+            </div>
+            <div class="panel-body">
+                <div id="chartOUI" style="height: 300px; width: 100%;"></div>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->        
+        
+<!-- /.row -->
+    <!-- /.col-lg-4 -->
+</div>
+<!-- /.row -->{% endblock %}
+{% block js %}
+    {{ super() }}
+    <script src="{{ url_for('serveStaticResource', resource='js/raphael-min.js')}}"></script>
+    <script src="{{ url_for('serveStaticResource', resource='js/morris.min.js')}}"></script>
+    <script src="{{ url_for('serveStaticResource', resource='js/morris-data.js')}}"></script>
+    <script src="{{ url_for('serveStaticResource', resource='js/canvasjs.min.js')}}"></script>
+{% endblock %}
+
+
+
+

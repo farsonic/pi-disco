@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Mac OS X (vers 31 October 2006 - Apple Inc. build 15.17), see www.w3.org" />
+
+  <title></title>
+</head>
+
+<body>
+  {% extends "base_layout.html" %} {% block title %}Button{% endblock %} {% block content %} 
+  <!-- /.row -->
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Discovery processes
+        </div>
+
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-lg-6">
+              <form role="form">
+                <div class="form-group">
+                  <div class="form-group input-group">
+                    <span class="input-group-addon">Hostname</span> <input type="text"
+                    class="form-control" placeholder="BLAH" />
+                  </div>
+                  
+                  <div class="form-group input-group">
+                    <span class="input-group-addon">Alias</span> <input type="text"
+                    class="form-control" placeholder="BLAH" />
+                  </div>
+
+                  <div class="form-group">
+                                            <label>Operating System</label>
+                                            <select class="form-control">
+                                                <option value="" selected disabled>Please select</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                            </select>
+                                        </div>
+                  
+                  <div class="form-group">
+                                            <label>Category</label>
+                                            <select class="form-control">
+                                                <option value="" selected disabled>Please select</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                            </select>
+                                        </div>
+                  
+                  
+                  
+                </div><button type="submit" class="btn btn-default">Submit Button</button>
+                <button type="reset" class="btn btn-default">Reset Button</button>
+              </form>
+            </div>
+          </div><!-- /.panel-body -->
+        </div><!-- /.col-lg-6 (nested) -->
+      </div><!-- /.row (nested) -->
+    </div><!-- /.panel-body -->
+  </div><!-- /.panel -->
+  <!-- /.col-lg-12 -->
+  <!-- /.row -->
+  {% endblock %}
+</body>
+</html>

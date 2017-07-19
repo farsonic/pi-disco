@@ -1,0 +1,104 @@
+{% extends "base_layout.html" %} {% block title %}Device table{% endblock %} 
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('serveStaticResource', resource='css/responsive.dataTables.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('serveStaticResource', resource='css/dataTables.bootstrap.css') }}">
+{% endblock %} 
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Network Devices
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="dataTable_wrapper">
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Session ID</th>
+                                <th>Status</th>
+                                <th>Source IP</th>
+                                <th>Source Port</th>
+                                <th>Dest IP</th>
+                                <th>Dest Port</th>
+                                <th>Application</th>
+                                <th>Nested App</th>
+                                <th>Source NAT IP</th>
+                                <th>Source NAT Port</th>
+                                <th>Dest NAT IP</th>
+                                <th>Dest NAT Port</th>
+                                <th>Source NAT Rule</th>
+                                <th>Dest NAT Rule</th>
+                                <th>Policy</th>
+                                <th>Source Zone</th>
+                                <th>Dest Zone</th>
+                                <th>Bytes from Server</th>
+                                <th>Bytes from Client</th>
+                                <th>Session Duration</th>
+                                <th>User</th>
+                                <th>Roles</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+        		     {% for key, value in log_dict.items(): %}
+        		     
+        		              {% if value['closed'] == 'Session Open': %}
+                               <tr class="success">
+                              {% endif %}
+                              
+                              {% if value['closed'] == 'Session Closed': %}
+                               <tr class="danger">
+                              {% endif %}
+                              
+                                <td>{{ value['date'] }}</td>
+                                <td>{{ key }}</td>
+         						<td>{{ value['closed'] }}</td>
+         						<td>{{ value['source_ip'] }}</td>
+         						<td>{{ value['source_port'] }}</td>
+         						<td>{{ value['dest_ip'] }}</td>
+         						<td>{{ value['dest_port'] }}</td>
+         						<td>{{ value['application'] }}</td>
+         						<td>{{ value['nested_application'] }}</td>
+         						<td>{{ value['source_nat_ip'] }}</td>
+         						<td>{{ value['source_nat_port'] }}</td>
+         						<td>{{ value['dest_nat_ip'] }}</td>
+         						<td>{{ value['dest_nat_port'] }}</td>
+         						<td>{{ value['source_nat_rule'] }}</td>
+         						<td>{{ value['dest_nat_rule'] }}</td>
+         						<td>{{ value['policy_name'] }}</td>
+         						<td>{{ value['source_zone'] }}</td>
+         						<td>{{ value['dest_zone'] }}</td>
+         						<td>{{ value['bytes_from_client'] }}</td>
+         						<td>{{ value['bytes_from_server'] }}</td>
+         						<td>{{ value['duration'] }}</td>
+         						<td>{{ value['username'] }}</td>
+         						<td>{{ value['roles'] }}</td>
+        		    		  </tr>
+                             {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.table-responsive -->
+<!-- /.row -->
+{% endblock %} 
+{% block js %}
+{{ super() }}
+<script src="{{ url_for('serveStaticResource', resource='js/jquery.dataTables.min.js')}}"></script>
+<script src="{{ url_for('serveStaticResource', resource='js/dataTables.bootstrap.min.js')}}"></script>
+<script>
+$(document).ready(function() {
+    $('#dataTables-example').DataTable({
+        responsive: true
+    });
+});
+</script>
+{% endblock %}
