@@ -26,7 +26,7 @@ def ConfigSectionMap(section):
     return dict1
 
 Config = ConfigParser.ConfigParser()
-Config.read("/etc/netdisco/netdisco.conf")
+Config.read("/opt/pi-disco/netdisco.conf")
 
 key = ConfigSectionMap("Fingerbank")['key']
 print key
