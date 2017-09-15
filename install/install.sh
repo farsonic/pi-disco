@@ -127,6 +127,8 @@ chmod +x /etc/profile.d/greeting.sh
 #Is everything up and running, lets check output of ps -aux to be sure 
 /opt/pi-disco/check-status.py
 
+#Ensure Redis is publishing events which the SRX-Updateder is subscribed to
+redis-cli config set notify-keyspace-events KEA
 
 printf "
 #EX Specific configuration required
