@@ -76,6 +76,8 @@ sed -i "s/SRX_PASSWORD/$SRX_PASSWORD/g" /opt/pi-disco/netdisco.conf
 sed -i "s/EX_IP/$EX_IP/g" /opt/pi-disco/netdisco.conf
 sed -i "s/EX_USERNAME/$EX_USERNAME/g" /opt/pi-disco/netdisco.conf
 sed -i "s/EX_PASSWORD/$EX_PASSWORD/g" /opt/pi-disco/netdisco.conf
+sed -i "s/EX_IP/$EX_IP/g" /opt/pi-disco/agents/netdisco-radius.py
+sed -i "s/EX_SECRET/$EX_SECRET/g" /opt/pi-disco/agents/netdisco-radius.py
 
 
 cp /opt/pi-disco/init/* /etc/init.d/
