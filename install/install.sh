@@ -132,6 +132,49 @@ chmod +x /etc/profile.d/greeting.sh
 #Is everything up and running, lets check output of ps -aux to be sure 
 /opt/pi-disco/check-status.py
 
+
+ex_instructions="
+set system services ssh protocol-version v2
+set system services netconf ssh
+set forwarding-options dhcp-relay overrides bootp-support
+set forwarding-options dhcp-relay overrides delete-binding-on-renegotiation
+set forwarding-options dhcp-relay server-group DHCP-Servers <Pi-Disco IP Address>
+set forwarding-options dhcp-relay active-server-group DHCP-Servers
+
+set protocols dot1x authenticator authentication-profile-name pidisco
+set protocols dot1x authenticator interface all supplicant multiple
+set protocols dot1x authenticator interface all mac-radius restrict
+set protocols dot1x authenticator interface all server-fail vlan-name default
+
+set access radius-server <Pi-Disco IP Address> port 1812
+set access radius-server <Pi-Disco IP Address> accounting-port 1813
+set access radius-server <Pi-Disco IP Address> secret $EX_SECRET
+set access radius-server <Pi-Disco IP Address> retry 1
+
+set access profile pidisco authentication-order radius
+set access profile pidisco radius authentication-server <Pi-Disco IP Address>
+set access profile pidisco radius accounting-server <Pi-Disco IP Address>
+set access profile pidisco accounting order radius
+set access profile pidisco accounting update-interval 10
+set access profile pidisco accounting statistics volume-time
+"
+
+
+srx_instructions="
+set system services ssh protocol-version v2
+set system services netconf ssh
+set system services webapi user $WEBAPI_USERNAME password $WEBAPI_PASSWORD
+set system services webapi client 192.168.0.14
+set system services webapi http
+"
+
+printf $ex_instructions
+
+printf $srx_instructions
+
+
+
+
 #How long did this take? Expect a long run time on a Raspberry PI. Original model PI's will possibly not have enough memory. 
 end=$(date +%s.%N)    
 runtime=$(python -c "print(${end} - ${start})")
