@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 import subprocess
 p = subprocess.Popen(["ps", "-aux"], stdout=subprocess.PIPE)
 out, err = p.communicate()
