@@ -133,7 +133,7 @@ chmod +x /etc/profile.d/greeting.sh
 /opt/pi-disco/check-status.py
 
 
-ex_instructions="
+printf "
 set system services ssh protocol-version v2
 set system services netconf ssh
 set forwarding-options dhcp-relay overrides bootp-support
@@ -160,17 +160,13 @@ set access profile pidisco accounting statistics volume-time
 "
 
 
-srx_instructions="
+printf "
 set system services ssh protocol-version v2
 set system services netconf ssh
 set system services webapi user $WEBAPI_USERNAME password $WEBAPI_PASSWORD
 set system services webapi client <Pi-Disco IP Address>
 set system services webapi http
 "
-
-printf $ex_instructions
-
-printf $srx_instructions
 
 
 
