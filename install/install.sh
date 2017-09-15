@@ -129,6 +129,9 @@ update-rc.d netdisco-webserver enable
 cp /opt/pi-disco/install/greeting.sh /etc/profile.d/
 chmod +x /etc/profile.d/greeting.sh
 
+#Is everything up and running, lets check output of ps -aux to be sure 
+/opt/pi-disco/check-status.py
+
 #How long did this take? Expect a long run time on a Raspberry PI. Original model PI's will possibly not have enough memory. 
 end=$(date +%s.%N)    
 runtime=$(python -c "print(${end} - ${start})")
