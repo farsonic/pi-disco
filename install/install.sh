@@ -109,7 +109,6 @@ update-rc.d netdisco-webserver enable
 #Delete install directory 
 #rm -r /var/tmp/netdisco-installer
 
-
 cp /opt/pi-disco/install/greeting.sh /etc/profile.d/
 chmod +x /etc/profile.d/greeting.sh
 
