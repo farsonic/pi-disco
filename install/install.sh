@@ -106,6 +106,17 @@ update-rc.d netdisco-webserver enable
 /etc/init.d/netdisco-useragent start
 /etc/init.d/netdisco-webserver start
 /etc/init.d/redis-server start
+
+/etc/init.d/netdisco-dhcp restart
+/etc/init.d/netdisco-ex restart
+/etc/init.d/netdisco-ping restart
+/etc/init.d/netdisco-radius restart
+/etc/init.d/netdisco-srx-syslog restart
+/etc/init.d/netdisco-srx-update restart
+/etc/init.d/netdisco-useragent restart
+/etc/init.d/netdisco-webserver restart
+/etc/init.d/redis-server restart
+
 /usr/bin/redis-server --daemonize yes
 
 #Delete install directory 
