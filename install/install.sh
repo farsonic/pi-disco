@@ -53,7 +53,7 @@ mkdir /opt/
 cd /var/tmp/netdisco-installer/
 apt-get update 
 apt-get install -y python git wget
-wget -O https://bootstrap.pypa.io/get-pip.py
+wget https://bootstrap.pypa.io/get-pip.py
 python get-pip.py
 rm get-pip.py
 pip install junos-eznc netaddr nmap pyrad redis requests scapy ua_parser walrus pyyaml flask nmap
