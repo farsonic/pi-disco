@@ -166,7 +166,8 @@ set system services webapi http
 
 
 "
-
+printf "Connect to your server at http://$DISCO_IP:8080: 
+"
 
 
 
