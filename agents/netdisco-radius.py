@@ -96,7 +96,7 @@ if __name__ == '__main__':
     srv = FakeServer(dict=dictionary.Dictionary("/opt/pi-disco/agents/dictionary"), coa_enabled=True)
 
     # add clients (address, secret, name)
-    srv.hosts["192.168.0.6"] = server.RemoteHost("192.168.0.6", b"jun1per", "EXSWITCH")
+    srv.hosts["EX_IP"] = server.RemoteHost("EX_IP", b"EX_SECRET", "EXSWITCH")
     srv.BindToAddress("")
 
     # start server
