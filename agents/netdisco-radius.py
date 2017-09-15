@@ -93,10 +93,10 @@ class FakeServer(server.Server):
 if __name__ == '__main__':
 
     # create server and read dictionary
-    srv = FakeServer(dict=dictionary.Dictionary("/etc/netdisco/agents/dictionary"), coa_enabled=True)
+    srv = FakeServer(dict=dictionary.Dictionary("/opt/pi-disco/agents/dictionary"), coa_enabled=True)
 
     # add clients (address, secret, name)
-    srv.hosts["192.168.0.6"] = server.RemoteHost("192.168.0.6", b"jun1per", "EX2200")
+    srv.hosts["192.168.0.6"] = server.RemoteHost("192.168.0.6", b"jun1per", "EXSWITCH")
     srv.BindToAddress("")
 
     # start server
