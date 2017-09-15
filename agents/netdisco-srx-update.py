@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import datetime,redis
+import datetime,redis,ConfigParser
 import xml.etree.ElementTree as ET
 import requests
 from walrus import *
@@ -10,9 +10,25 @@ import argparse
 db = redis.Redis('localhost')
 
 
-srx_ip = '192.168.0.2'
-username = 'netdisco'
-password = 'jun1per'
+def ConfigSectionMap(section):
+    dict1 = {}
+    options = Config.options(section)
+    for option in options:
+        try:
+            dict1[option] = Config.get(section, option)
+            if dict1[option] == -1:
+                DebugPrint("skip: %s" % option)
+        except:
+            print("exception on %s!" % option)
+            dict1[option] = None
+    return dict1
+
+Config = ConfigParser.ConfigParser()
+Config.read("/opt/pi-disco/netdisco.conf")
+
+srx_ip = ConfigSectionMap("SRX")['ip']
+username = ConfigSectionMap("SRX")['webapi_username']
+password = ConfigSectionMap("SRX")['webapi_password']
 
 def logon(dev_username,ip,redis_mac_vendor,redis_device_model,redis_os,redis_os_version,redis_category,customtags):
     timestamp =  str(datetime.datetime.now().isoformat())
@@ -103,6 +119,7 @@ def generatexml():
 r = redis.StrictRedis()
 pubsub = r.pubsub()
 pubsub.psubscribe('__keyspace@0__:device_*')
+print "Subscribing to local Redis database for device update information"
 
 #Initialize a local Dictionary to track device and IP assignment if known
 state_db = {}
