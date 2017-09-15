@@ -109,6 +109,10 @@ update-rc.d netdisco-webserver enable
 #Delete install directory 
 #rm -r /var/tmp/netdisco-installer
 
+
+cp /opt/pi-disco/install/greeting.sh /etc/profile.d/
+chmod +x /etc/profile.d/greeting.sh
+
 #How long did this take? Expect a long run time on a Raspberry PI. Original model PI's will possibly not have enough memory. 
 end=$(date +%s.%N)    
 runtime=$(python -c "print(${end} - ${start})")
