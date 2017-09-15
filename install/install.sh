@@ -45,6 +45,8 @@ echo -e "Please enter your EX Username:"
 read EX_USERNAME
 echo -e "Please enter your EX Password:"
 read EX_PASSWORD
+echo -e "Please enter your EX RADIUS Shared Secret:"
+read EX_SECRET
 
 # Make project directories 
 mkdir /var/tmp/netdisco-installer
