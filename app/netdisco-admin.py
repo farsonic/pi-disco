@@ -6,7 +6,7 @@ from walrus import *
 from collections import Counter
 
 Config = ConfigParser.ConfigParser()
-Config.read("/etc/netdisco/netdisco.conf")
+Config.read("/opt/pi-disco/netdisco.conf")
 
 def ConfigSectionMap(section):
     dict1 = {}
