@@ -79,7 +79,7 @@ wdb = Database(host='localhost', db=0)
 var = 1
 
 Config = ConfigParser.ConfigParser()
-Config.read("/etc/netdisco/netdisco.conf")
+Config.read("/opt/pi-disco/netdisco.conf")
 
 dir = ConfigSectionMap("Global")['directory']
 
