@@ -18,30 +18,30 @@ fi
 
 start=$(date +%s.%N)
 
-echo "In order to use Pi-Disco you need to have an API Key from Fingerbank.inverse.ca" 
+echo "\nIn order to use Pi-Disco you need to have an API Key from Fingerbank.inverse.ca" 
 echo "Create an account and paste the provided Key below" 
 echo "Please enter your FingerBank API key:"
 read apikey
 #echo $apikey
 
-echo "Please provide IP Address of an SRX Firewall as well as credentials for SSH/Netconf and WebAPI Access" 
+echo "\nPlease provide IP Address of an SRX Firewall as well as credentials for SSH/Netconf and WebAPI Access" 
 echo "Note: SSH Credentials will typically be different from the dedicated WebAPI username/password" 
-echo "Please enter your SRX IP Address:"
+echo "\nPlease enter your SRX IP Address:"
 read SRX_IP
 echo "Please enter your SRX Username:"
 read SRX_USERNAME
-echo "Please enter your SRX Password:"
+echo "\nPlease enter your SRX Password:"
 read SRX_PASSWORD
-echo "Please enter the SRX WebAPI Username:"
+echo "\nPlease enter the SRX WebAPI Username:"
 read WEBAPI_USERNAME
-echo "Please enter the SRX WebAPI Password:"
+echo "\nPlease enter the SRX WebAPI Password:"
 read WEBAPI_PASSWORD
-echo "Please provide IP Address of an EX-Series switch as well as credentials for SSH/Netconf" 
+echo "\nPlease provide IP Address of an EX-Series switch as well as credentials for SSH/Netconf" 
 echo "Please enter your EX IP Address:"
 read EX_IP
-echo "Please enter your EX Username:"
+echo "\nPlease enter your EX Username:"
 read EX_USERNAME
-echo "Please enter your EX Password:"
+echo "\nPlease enter your EX Password:"
 read EX_PASSWORD
 
 # Make project directories 
