@@ -24,9 +24,9 @@ echo -e "Note: SSH Credentials will typically be different from the dedicated We
 echo -e "\nPlease enter your SRX IP Address:"
 read SRX_IP
 echo -e "Please enter your SRX Username:"
-read -s SRX_USERNAME
+read SRX_USERNAME
 echo -e "Please enter your SRX Password:"
-read SRX_PASSWORD
+read -s SRX_PASSWORD
 echo -e "Please enter the SRX WebAPI Username:"
 read WEBAPI_USERNAME
 echo -e "Please enter the SRX WebAPI Password:"
