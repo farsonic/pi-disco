@@ -18,30 +18,30 @@ fi
 
 start=$(date +%s.%N)
 
-echo "\nIn order to use Pi-Disco you need to have an API Key from Fingerbank.inverse.ca" 
-echo "Create an account and paste the provided Key below" 
-echo "Please enter your FingerBank API key:"
+echo -e "\nIn order to use Pi-Disco you need to have an API Key from Fingerbank.inverse.ca" 
+echo -e  "Create an account and paste the provided Key below" 
+echo -e "Please enter your FingerBank API key:"
 read apikey
 #echo $apikey
 
-echo "\nPlease provide IP Address of an SRX Firewall as well as credentials for SSH/Netconf and WebAPI Access" 
-echo "Note: SSH Credentials will typically be different from the dedicated WebAPI username/password" 
-echo "\nPlease enter your SRX IP Address:"
+echo -e "\nPlease provide IP Address of an SRX Firewall as well as credentials for SSH/Netconf and WebAPI Access" 
+echo -e "Note: SSH Credentials will typically be different from the dedicated WebAPI username/password" 
+echo -e "\nPlease enter your SRX IP Address:"
 read SRX_IP
-echo "Please enter your SRX Username:"
+echo -e "Please enter your SRX Username:"
 read SRX_USERNAME
-echo "\nPlease enter your SRX Password:"
+echo -e "\nPlease enter your SRX Password:"
 read SRX_PASSWORD
-echo "\nPlease enter the SRX WebAPI Username:"
+echo -e "\nPlease enter the SRX WebAPI Username:"
 read WEBAPI_USERNAME
-echo "\nPlease enter the SRX WebAPI Password:"
+echo -e "\nPlease enter the SRX WebAPI Password:"
 read WEBAPI_PASSWORD
-echo "\nPlease provide IP Address of an EX-Series switch as well as credentials for SSH/Netconf" 
-echo "Please enter your EX IP Address:"
+echo -e "\nPlease provide IP Address of an EX-Series switch as well as credentials for SSH/Netconf" 
+echo -e "Please enter your EX IP Address:"
 read EX_IP
-echo "\nPlease enter your EX Username:"
+echo -e "\nPlease enter your EX Username:"
 read EX_USERNAME
-echo "\nPlease enter your EX Password:"
+echo -e "\nPlease enter your EX Password:"
 read EX_PASSWORD
 
 # Make project directories 
