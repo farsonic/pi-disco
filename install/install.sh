@@ -33,20 +33,20 @@ echo -e "Note: SSH Credentials will typically be different from the dedicated We
 echo -e "\nPlease enter your SRX IP Address:"
 read SRX_IP
 echo -e "Please enter your SRX Username:"
-read SRX_USERNAME
+read -s SRX_USERNAME
 echo -e "Please enter your SRX Password:"
 read SRX_PASSWORD
 echo -e "Please enter the SRX WebAPI Username:"
 read WEBAPI_USERNAME
 echo -e "Please enter the SRX WebAPI Password:"
-read WEBAPI_PASSWORD
+read -s WEBAPI_PASSWORD
 echo -e "\nPlease provide IP Address of an EX-Series switch as well as credentials for SSH/Netconf" 
 echo -e "\nPlease enter your EX IP Address:"
 read EX_IP
 echo -e "Please enter your EX Username:"
 read EX_USERNAME
 echo -e "Please enter your EX Password:"
-read EX_PASSWORD
+read -s EX_PASSWORD
 echo -e "Please enter your EX RADIUS Shared Secret:"
 read EX_SECRET
 
