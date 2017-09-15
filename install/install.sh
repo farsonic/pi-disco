@@ -158,6 +158,9 @@ set system services netconf ssh
 set system services webapi user $WEBAPI_USERNAME password $WEBAPI_PASSWORD
 set system services webapi client <Pi-Disco IP Address>
 set system services webapi http
+
+
+
 "
 
 
