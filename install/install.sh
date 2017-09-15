@@ -19,6 +19,8 @@ echo -e "Please enter your FingerBank API key:"
 read apikey
 #echo $apikey
 
+echo -e "\nPlease enter the IP Address of this server:"
+read DISCO_IP
 echo -e "\nPlease provide IP Address of an SRX Firewall as well as credentials for SSH/Netconf and WebAPI Access" 
 echo -e "Note: SSH Credentials will typically be different from the dedicated WebAPI username/password" 
 echo -e "\nPlease enter your SRX IP Address:"
@@ -132,19 +134,19 @@ set system services ssh protocol-version v2
 set system services netconf ssh
 set forwarding-options dhcp-relay overrides bootp-support
 set forwarding-options dhcp-relay overrides delete-binding-on-renegotiation
-set forwarding-options dhcp-relay server-group DHCP-Servers <Pi-Disco IP Address>
+set forwarding-options dhcp-relay server-group DHCP-Servers $DISCO_IP
 set forwarding-options dhcp-relay active-server-group DHCP-Servers
 set protocols dot1x authenticator authentication-profile-name pidisco
 set protocols dot1x authenticator interface all supplicant multiple
 set protocols dot1x authenticator interface all mac-radius restrict
 set protocols dot1x authenticator interface all server-fail vlan-name default
-set access radius-server <Pi-Disco IP Address> port 1812
-set access radius-server <Pi-Disco IP Address> accounting-port 1813
-set access radius-server <Pi-Disco IP Address> secret $EX_SECRET
-set access radius-server <Pi-Disco IP Address> retry 1
+set access radius-server $DISCO_IP port 1812
+set access radius-server $DISCO_IP accounting-port 1813
+set access radius-server $DISCO_IP secret $EX_SECRET
+set access radius-server $DISCO_IP retry 1
 set access profile pidisco authentication-order radius
-set access profile pidisco radius authentication-server <Pi-Disco IP Address>
-set access profile pidisco radius accounting-server <Pi-Disco IP Address>
+set access profile pidisco radius authentication-server $DISCO_IP
+set access profile pidisco radius accounting-server $DISCO_IP
 set access profile pidisco accounting order radius
 set access profile pidisco accounting update-interval 10
 set access profile pidisco accounting statistics volume-time
@@ -156,7 +158,7 @@ printf "
 set system services ssh protocol-version v2
 set system services netconf ssh
 set system services webapi user $WEBAPI_USERNAME password $WEBAPI_PASSWORD
-set system services webapi client <Pi-Disco IP Address>
+set system services webapi client $DISCO_IP
 set system services webapi http
 
 
