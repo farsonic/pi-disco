@@ -87,9 +87,16 @@ The GUI is a Pyhon Flask Web application that relies on the underlying Redis dat
 
 Usage: /etc/init.d/netdisco-webserver {start|stop|restart|status}
 
-
+![](/images/DeviceTable.png)
+![](/images/NetworkDiscovery.png)
 
 # Install process
+The solution was designed and tested on a Raspberry Pi3 running the latest version of Raspbian. The installation process has also been tested on Ubuntu server and should function on any Debian based system.
+
+Prior to installation the user should have registered an account with https://fingerbank.inverse.ca/ and know their API number for their account. Ideally you should also have an EX-Series switch and an SRX Firewall with the latest code. Currently tested on JUNOS 15.1X49-D110 on SRX Platforms. 
+
+The installation process can be started using a the following command which will take care of all dependencies and initial configuraton. 
+
 bash <(curl -s https://raw.githubusercontent.com/farsonic/pi-disco/master/install/install.sh)
 
 
