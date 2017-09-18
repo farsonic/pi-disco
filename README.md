@@ -29,15 +29,12 @@ The UserAgent agent (known as netdisco-useragent) operates only where the SRX fi
 set interfaces gr-0/0/0 unit 0 tunnel source <SRX IP Address>
 set interfaces gr-0/0/0 unit 0 tunnel destination <Pi Disco IP Address>
 set interfaces gr-0/0/0 unit 0 family inet address <Tunnel IP Address for this end>
-
 set security zones security-zone trust interfaces gr-0/0/0.0
-
 set firewall filter port-mirror term interesting-traffic from protocol tcp
 set firewall filter port-mirror term interesting-traffic from destination-port 80
 set firewall filter port-mirror term interesting-traffic then port-mirror
 set firewall filter port-mirror term interesting-traffic then accept
 set firewall filter port-mirror term pass then accept
-
 set interfaces ge-0/0/0 unit 0 family inet filter input port-mirror
 ```
 
