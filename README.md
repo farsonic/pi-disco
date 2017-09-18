@@ -5,13 +5,13 @@ Pi-disco peovides a single platform for discovery and fingerprinting of all devi
 ## Theory of operation
 
 Pi-Disco provides the following basic system agents for the detection of devices, both static and dynamic on the network across the network. 
-
+```
 * DHCP Sniffer 
 * RADIUS Server
 * HTTP UserAgent detection
 * ICMP/PING Agent
 * Juniper EX-Series Polling agent
-
+```
 ## Install process
 bash <(curl -s https://raw.githubusercontent.com/farsonic/pi-disco/master/install/install.sh)
 
