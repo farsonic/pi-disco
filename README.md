@@ -11,7 +11,7 @@ Pi-Disco provides the following basic system agents for the detection of network
 * Juniper EX-Series Polling agent (Static device detection and fingerprinting)
 * HTTP UserAgent detection
 * ICMP/PING Agent
-* Juniper SRX-Series 
+* Juniper SRX-Series dynamic programming
 ```
 
 ### DHCP-Sniffer 
