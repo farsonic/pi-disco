@@ -79,5 +79,7 @@ Usage: /etc/init.d/netdisco-webserver {start|stop|restart|status}
 bash <(curl -s https://raw.githubusercontent.com/farsonic/pi-disco/master/install/install.sh)
 
 
+# Debugging
 
+Each agent is located in /opt/pidisco/agents and can be run directly from the command line if requried. This can aid in debugging functionality or to determine if the installation processed failed or there are missing dependencies. Before running one of these agents, first stop the agent from running using /etc/init.d/agent* stop. 
 
