@@ -23,6 +23,8 @@ The DHCP agent (known as netdisco-dhcp-listener) is purely listener of DHCP requ
 
 Usage: /etc/init.d/netdisco-dhcp-listener {start|stop|restart|status}
 
+![](/images/dhcp.png)
+
 ## RADIUS agent
 The RADIUS agent (known as netdisco-radius) is a very simple RADIUS server designed to integrate with a MAC Radius based network. Currently the implementation is intended to always successfully authenticate a device connecting to the network. The intention here is not to provide network authentication, but to determine where a specific MAC Address is located. RADIUS provides information including the Switch name and the physical port a device is connected to. The RADIUS Agent will also accept interium accounting packets from devices in the network. With both RADIUS Authentication and Accounting being collected by the agent the Redis database is able to be updated to include the actual location of the device down to the switch/port level as well as the current status (Start/Stop) of traffic from the MAC Address. All this information is updated into the Redis server apon collection, keeping track of the device as it changes location/status. 
 
