@@ -4,13 +4,14 @@ Pi-disco peovides a single platform for discovery and fingerprinting of all devi
 
 ## Theory of operation
 
-Pi-Disco provides the following basic system agents for the detection of network devices, both static and dynamic on the network across the network. With these operational, all devices, configured through DHCP or Statically assigned should be detected and permantly stored into a centralised Redis database. Not all agents are required to be operational, but each is used to fill in additional information as devices are discovered. 
+Pi-Disco provides the following basic system agents for the detection of network devices, both static and dynamic on the network across the network. With these operational, all devices, configured through DHCP or Statically assigned should be passively detected and permantly stored into a centralised Redis database. Not all agents are required to be operational, but each is used to fill in additional information as devices are discovered. 
 ```
 * DHCP Sniffer (Dynamic device detection and fingerprinting) 
 * RADIUS Server
 * Juniper EX-Series Polling agent (Static device detection and fingerprinting)
 * HTTP UserAgent detection
 * ICMP/PING Agent
+* Juniper SRX-Series 
 ```
 
 ### DHCP-Sniffer 
@@ -20,7 +21,7 @@ The DHCP agent (known as netdisco-dhcp-listener) is purely listener of DHCP requ
 The RADIUS agent (known as netdisco-radius) is a very simple RADIUS server designed to integrate with a MAC Radius based network. Currently the implementation is intended to always successfully authenticate a device connecting to the network. The intention here is not to provide network authentication, but to determine where a specific MAC Address is located. RADIUS provides information including the Switch name and the physical port a device is connected to. The RADIUS Agent will also accept interium accounting packets from devices in the network. With both RADIUS Authentication and Accounting being collected by the agent the Redis database is able to be updated to include the actual location of the device down to the switch/port level as well as the current status (Start/Stop) of traffic from the MAC Address. All this information is updated into the Redis server apon collection, keeping track of the device as it changes location/status. 
 
 ## EX-Series device agent
-The EX Polling agent (known as netdisco-ex-poller) peridically connects to every defined Juniper switch in the network and collects the Ethernet Switching table, ARP table etc. Once this is collected the MAC addresses are validated against the existing Redis Database to detect devices that have not been detected through DHCP and/or 802.1X based RADIUS authentication. New devices are analysed against the Fingerbank database in a similar manner to the DHCP agent. This information is stored in the database for future use. 
+The EX Polling agent (known as netdisco-ex-poller) peridically connects to every defined Juniper switch in the network and collects the Ethernet Switching table, ARP table etc. Once this is collected the MAC addresses are validated against the existing Redis Database to detect devices that have not been detected through DHCP and/or 802.1X based RADIUS authentication. New devices are analysed against the Fingerbank database in a similar manner to the DHCP agent. This information is stored in the database for future use. The polling agent uses NETCONF to connect to switches and requires credentials to be stored in the configuration file for this task. No changes are made and the user credentials could be read-only if required. 
 
 ## HTTP UserAgent detection
 The UserAgent agent (known as netdisco-useragent) operates only where the SRX firewall has a GRE tunnel directly to the Pi-Disco server. Over this tunnel the SRX should be forwarding all TCP port 80 HTTP traffic. The agent will analyse the HTTP UserAgent header to determine what Browser is being used by each IP address. The agent then matches the IP Address to the device in the network and updates the Redis database. 
@@ -41,7 +42,16 @@ set interfaces ge-0/0/0 unit 0 family inet filter input port-mirror
 ## ICMP/PING Agent
 The ICMP Agent (known as netdisco-pinger) periodically pings every device listed in the database to detmine if it is alive and functional. Caution is needed here as devices can still be functional on the network but blocking ICMP traffic inbound. This is used to simply provide another level of operational status of a device. 
 
+## SRX Update agent 
+The SRX Update Agent (known as netdisco-srx-update) utalises the dynamic REST based API integrated with JUNOS on the SRX-Series NGFW platform. The agent subscribes to the Redis database and immediatly detects every change made to a device either manually from the Redis-cli, the pi-disco agents or through the Web GUI. This capability ensures the SRX platform has an identical view of the active devices in the Redis database within seconds of them being connected or updated. 
 
+When running through the install process the required configuration commands are provided for the SRX. For refernce the following needs to be configured. The WebAPI uses it's own dedicated username/password and is unique from the local user credentials used for SSH, NETCONF etc. 
+
+```
+set system services webapi user admin password <PASSWORD>
+set system services webapi client <Pi Disco IP Address> 
+set system services webapi http
+```
 
 ## Install process
 bash <(curl -s https://raw.githubusercontent.com/farsonic/pi-disco/master/install/install.sh)
