@@ -4,7 +4,7 @@ Pi-disco peovides a single platform for discovery and fingerprinting of all devi
 
 ## Theory of operation
 
-Pi-Disco provides the following basic system agents for the detection of network devices, both static and dynamic on the network across the network. With these operational, all devices, configured through DHCP or Statically assigned should be passively detected and permantly stored into a centralised Redis database. Not all agents are required to be operational, but each is used to fill in additional information as devices are discovered. 
+Pi-Disco provides the following basic system agents for the detection of network devices, both static and dynamic across the network. With the agents operational, all devices, configured through DHCP or Statically assigned should be passively detected and permantly stored into a centralised Redis database. Not all agents are required to be operational, but each is used to fill in additional information as devices are discovered, ensuring the platform and SRX firewalls have a complete catalogue of every device. 
 ```
 * DHCP Sniffer (Dynamic device detection and fingerprinting) 
 * RADIUS Server
@@ -53,7 +53,7 @@ set system services webapi client <Pi Disco IP Address>
 set system services webapi http
 ```
 
-## Install process
+# Install process
 bash <(curl -s https://raw.githubusercontent.com/farsonic/pi-disco/master/install/install.sh)
 
 
