@@ -85,7 +85,7 @@ Usage: /etc/init.d/netdisco-srx-update {start|stop|restart|status}
 ![](/images/SRX-Mapping.png)
 
 ## Web Interface
-The GUI is a Pyhon Flask Web application that relies on the underlying Redis database. By default the web interface is installed/operating at http://<PI-IP-Address>:8080/ 
+The GUI is a Pyhon Flask Web application that relies on the underlying Redis database. By default the web interface is installed/operating at http://PI-IP-Address:8080/ 
 
 Usage: /etc/init.d/netdisco-webserver {start|stop|restart|status}
 
