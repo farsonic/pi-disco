@@ -95,7 +95,7 @@ Usage: /etc/init.d/netdisco-webserver {start|stop|restart|status}
 # Install process
 The solution was designed and tested on a Raspberry Pi3 running the latest version of Raspbian. The installation process has also been tested on Ubuntu server and should function on any Debian based system.
 
-Prior to installation the user should have registered an account with https://fingerbank.inverse.ca/ and know their API number for their account. Ideally you should also have an EX-Series switch and an SRX Firewall with the latest code. Currently tested on JUNOS 15.1X49-D110 on SRX Platforms. 
+Prior to installation the user should have registered an account with https://fingerbank.inverse.ca/ and know their API number for their account. Ideally you should also have an EX-Series switch and an SRX Firewall with the latest code. Currently tested on JUNOS 15.1X49-D110 on SRX Platforms. The specific API used on the SRX was added in 15.1X49D70 code which limited SRX integration to this release train. 802.1x/DHCP functionality is standards based and should work across any switching vendor. 
 
 The installation process can be started using a the following command which will take care of all dependencies and initial configuraton. 
 
