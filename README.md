@@ -99,6 +99,65 @@ The installation process can be started using a the following command which will
 
 bash <(curl -s https://raw.githubusercontent.com/farsonic/pi-disco/master/install/install.sh)
 
+# SRX Specific output
+
+PiDisco will program through the WebAPI a number of attributes for each device on the network. These attributes can be used directly within policy. The relevant commands to use on the SRX to see devices programmed into the SRX are 
+
+``
+show services user-identification authentication-table authentication-source all
+show services user-identification authentication-table authentication-source all extensive 
+show services user-identification authentication-table authentication-source all user <user-id>
+show services user-identification authentication-table authentication-source all user <user-id> extensive 
+
+show services user-identification device-information table all 
+show services user-identification device-information table all extensive 
+show services user-identification device-information table device-id <device-id>
+show services user-identification device-information table device-id <device-id> extensive
+```
+
+The following output shows a specific user and device entry output. From this you can see all information known about the device, including the IP address, Category, Vendor, Operating-System, OUI vendor and switch port details. 
+
+```
+admin@SRX320> show services user-identification authentication-table authentication-source all user e4ce8f40fea2 extensive
+Domain: netdisco
+  Source-ip: 192.168.0.130
+    Username: e4ce8f40fea2
+    Groups:posture-healthy
+    State: Valid
+    Source: NetDisco Agent
+    Access start date: 2017-09-15
+    Access start time: 15:52:09
+    Last updated timestamp: 2017-09-17 12:12:51
+    Age time: 0
+
+admin@SRX320> show services user-identification device-information table device-id e4ce8f40fea2 extensive
+Domain: netdisco
+  Source IP: 192.168.0.130
+    Device ID: e4ce8f40fea2
+    Device-Groups: N/A
+    device-category: macintosh
+    device-vendor: apple
+    device-os: mac os x
+    device-os-version: none
+    device-model: none
+    Status: alive
+    Redis_Key: device_e4ce8f40fea2
+    DHCP-Lease-Expire: sat dec 16 11:32:49 2017
+    Switch-Interface: ge-0/0/0.0
+    Hostname: sues-mbp-10
+    Is-Mobile: false
+    Switch-VLAN: default
+    Switch-Serial: gr0215146242
+    TTL: 255
+    Options-List: 1,121,3,6,15,119,252,95,44,46
+    MAC-Address: e4:ce:8f:40:fe:a2
+    Referred by: Test
+
+```
+
+
+
+
 
 # Debugging
 
