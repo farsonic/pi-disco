@@ -70,7 +70,7 @@ The ICMP Agent (known as netdisco-ping) periodically pings every device listed i
 Usage: /etc/init.d/netdisco-pinger {start|stop|restart|status}
 
 ## SRX Update agent 
-The SRX Update Agent (known as netdisco-srx-update) utalises the dynamic REST based API integrated with JUNOS on the SRX-Series NGFW platform. The agent subscribes to the Redis database and immediatly detects every change made to a device either manually from the Redis-cli, the pi-disco agents or through the Web GUI. This capability ensures the SRX platform has an identical view of the active devices in the Redis database within seconds of them being connected or updated. 
+The SRX Update Agent (known as netdisco-srx-update) utilizes the dynamic REST based API integrated with JUNOS on the SRX-Series NGFW platform. The agent subscribes to the Redis database and immediatly detects every change made to a device either manually from the Redis-cli, the pi-disco agents or through the Web GUI. This capability ensures the SRX platform has an identical view of the active devices in the Redis database within seconds of them being connected or updated. 
 
 When running through the install process the required configuration commands are provided for the SRX. For refernce the following needs to be configured. The WebAPI uses it's own dedicated username/password and is unique from the local user credentials used for SSH, NETCONF etc. 
 
