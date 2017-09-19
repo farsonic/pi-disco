@@ -1,7 +1,7 @@
 
-<p align="center"> 
+
 ![](/images/PiDisco.png)
-</p>
+
 
 Pi-disco peovides a single platform for discovery and fingerprinting of all devices across a network. Once devices are discovered and profiled the resulting device is programmed into an SRX firewall using a dynamic REST API without the need for configuration changes or commits to the system. 
 
