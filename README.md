@@ -155,8 +155,36 @@ Domain: netdisco
 
 ```
 
+# SRX Specific configuration for Policy
+Once attributes are assocaited with a user/device they can be used in policy. This allows you to block/permit based on any received attribute ie, MAC Vendor, Operating System, Switch location etc. The system also updates a specific attribute called Deny = true/false which is used to block users entierly. 
 
+## Example definitions for SRX device-information profiles
+```
+set services user-identification device-information authentication-source network-access-controller
+set services user-identification device-information end-user-profile profile-name GameConsoles domain-name netdisco
+set services user-identification device-information end-user-profile profile-name GameConsoles attribute device-category string "game console"
+set services user-identification device-information end-user-profile profile-name Test domain-name netdisco
+set services user-identification device-information end-user-profile profile-name Test attribute Switch-Serial string gr0215146242
+set services user-identification device-information end-user-profile profile-name denied domain-name netdisco
+set services user-identification device-information end-user-profile profile-name denied attribute Deny string true
+```
 
+Once attributes are defined these can then be utalised directly within security policy, as follows
+
+```
+set security policies from-zone trust to-zone untrust policy denied-users match source-address any
+set security policies from-zone trust to-zone untrust policy denied-users match destination-address any
+set security policies from-zone trust to-zone untrust policy denied-users match application any
+set security policies from-zone trust to-zone untrust policy denied-users match source-end-user-profile denied
+set security policies from-zone trust to-zone untrust policy denied-users then deny
+set security policies from-zone trust to-zone untrust policy denied-users then count
+
+set security policies from-zone trust to-zone untrust policy game-consoles match source-address any
+set security policies from-zone trust to-zone untrust policy game-consoles match destination-address any
+set security policies from-zone trust to-zone untrust policy game-consoles match application any
+set security policies from-zone trust to-zone untrust policy game-consoles match source-end-user-profile GameConsoles
+set security policies from-zone trust to-zone untrust policy game-consoles then permit
+```
 
 
 # Debugging
