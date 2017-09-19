@@ -103,7 +103,7 @@ bash <(curl -s https://raw.githubusercontent.com/farsonic/pi-disco/master/instal
 
 PiDisco will program through the WebAPI a number of attributes for each device on the network. These attributes can be used directly within policy. The relevant commands to use on the SRX to see devices programmed into the SRX are 
 
-``
+```
 show services user-identification authentication-table authentication-source all
 show services user-identification authentication-table authentication-source all extensive 
 show services user-identification authentication-table authentication-source all user <user-id>
