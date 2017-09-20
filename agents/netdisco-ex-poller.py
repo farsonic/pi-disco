@@ -89,12 +89,6 @@ ex_ip = ex_ip.split(',')
 globals().update(FactoryLoader().load(yaml.load(yml)))
 
 
-
-file = dir + "ex_series.conf"
-data = open(file)
-entries = data.read()
-list = entries.splitlines()
-
 def mac_address_oui(device_id,mac):
     k = wdb.Hash(device_id) 
     try:
@@ -148,11 +142,7 @@ def category_update(mac,vendor):
         
     if "Raspberry Pi Foundation" in vendor:
         k.update(os="Linux",category="Internet of Things (IoT)")     
-            
-   
-        
-             
-                             
+                                         
 
 while var == 1:
     for switch in ex_ip: 
