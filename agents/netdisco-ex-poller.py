@@ -80,8 +80,11 @@ var = 1
 
 Config = ConfigParser.ConfigParser()
 Config.read("/opt/pi-disco/netdisco.conf")
-
 dir = ConfigSectionMap("Global")['directory']
+username = ConfigSectionMap("EX")['username']
+password = ConfigSectionMap("EX")['password']
+ex_ip = ConfigSectionMap("EX")['ip']
+ex_ip = ex_ip.split(',')
 
 globals().update(FactoryLoader().load(yaml.load(yml)))
 
@@ -153,13 +156,10 @@ def category_update(mac,vendor):
 
 while var == 1:
     for switch in list: 
-       splitlist = switch.split(' ')
-       device = splitlist[0]
-       username = splitlist[1]
-       password = splitlist[2]
+       device = switch
+       print "Analysing switch = "+switch
        dev = Device(device,user=username,password=password)
-       
-       
+             
        try: 
            dev.open()
            #Retrieve ARP Table
