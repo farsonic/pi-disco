@@ -193,3 +193,8 @@ set security policies from-zone trust to-zone untrust policy game-consoles then 
 
 Each agent is located in /opt/pidisco/agents and can be run directly from the command line if requried. This can aid in debugging functionality or to determine if the installation processed failed or there are missing dependencies. Before running one of these agents, first stop the agent from running using /etc/init.d/agent* stop. 
 
+# Things missing
+
+The settings tab is not functional there yet .... need this to modify the config file and allow multiple SRX and EX/Switches as well as RADIUS settings. 
+
+SRX can send logs but this is partially implemented and damn slow. 
