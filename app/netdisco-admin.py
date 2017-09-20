@@ -139,10 +139,14 @@ def index():
     OS_list = []
     DHCP_counter = 0
     DHCP_list = []
+    DHCP_length = []
     Category_counter = 0
     Category_list = []
+    Category_length = 0
     OUI_counter = 0
+    OS_length = 0
     OUI_list = []
+    OUI_length = 0
 
     r = redis.Redis(host='localhost', db=0)
     for key in r.scan_iter(match='device_*'):
