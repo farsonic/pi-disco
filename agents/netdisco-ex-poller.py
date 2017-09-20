@@ -155,7 +155,7 @@ def category_update(mac,vendor):
                              
 
 while var == 1:
-    for switch in list: 
+    for switch in ex_ip: 
        device = switch
        print "Analysing switch = "+switch
        dev = Device(device,user=username,password=password)
