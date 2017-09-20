@@ -191,6 +191,14 @@ set security policies from-zone trust to-zone untrust policy game-consoles then 
 
 # Debugging
 
+First off, Redis needs to be running on the system The installer does this but I have seen the Daemon fail to start during the installation process. Kick this off with 
+
+```
+/usr/bin/redis-server --daemonize yes
+```
+
+The Web UI really wants to have some devices present in the Redis DB before it will display information or even function. I'm working on making this a bit more resilent. 
+
 Each agent is located in /opt/pidisco/agents and can be run directly from the command line if requried. This can aid in debugging functionality or to determine if the installation processed failed or there are missing dependencies. Before running one of these agents, first stop the agent from running using /etc/init.d/agent* stop. 
 
 # Things missing
