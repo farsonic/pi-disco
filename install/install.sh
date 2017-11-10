@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-printf "Install script v1.0 15/09/2017"
+printf "Install script v1.1 11/10/2017"
 
 
 
@@ -50,7 +50,7 @@ mkdir /opt/
 #install dependencies 
 cd /var/tmp/netdisco-installer/
 apt-get update 
-apt-get install -y python git wget
+apt-get install -y python git wget build-essential libssl-dev libffi-dev python-dev
 wget -N https://bootstrap.pypa.io/get-pip.py
 python get-pip.py
 rm get-pip.py
