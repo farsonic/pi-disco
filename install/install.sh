@@ -50,7 +50,7 @@ mkdir /opt/
 #install dependencies 
 cd /var/tmp/netdisco-installer/
 apt-get update 
-apt-get install -y python git wget build-essential libxml2 libssl-dev libffi-dev python-dev redis-server
+apt-get install -y python git wget build-essential libxml2 libxslt1-dev libssl-dev libffi-dev python-dev redis-server
 wget -N https://bootstrap.pypa.io/get-pip.py
 python get-pip.py
 rm get-pip.py
